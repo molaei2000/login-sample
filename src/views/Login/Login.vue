@@ -4,15 +4,15 @@
         <v-card-title class="justify-center font-weight-bold">
             <h2 class="py-5">Login</h2>
         </v-card-title>
-        <Fields/>
+        <Form/>
     </v-card>
 </template>
 
 <script>
-import Fields from './components/Fields.vue'
+import Form from './components/Form.vue'
 export default {
     components:{
-        Fields,
+        Form,
     },
 };
 </script>

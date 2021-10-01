@@ -52,7 +52,6 @@ export default {
         submitForm() {
             if (this.formValid) {
                 this.$store.state.loading = true;
-                console.log(this.$store.state.loading);
                 const form = {
                     usrname:loginFields[0].value,
                     password:loginFields[1].value

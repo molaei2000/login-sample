@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {AUTH_ERROR,AUTH_SUCCESS} from './types'
 export default {
     state: {
         token: '',
@@ -12,12 +12,12 @@ export default {
         authStatus: state => state.status,
     },
     mutations: {
-        auth_success(state, token, user) {
+        [AUTH_SUCCESS](state, token, user) {
             state.status = 'success'
             state.token = token
             state.user = user
         },
-        auth_error(state) {
+        [AUTH_ERROR](state) {
             state.status = 'error'
         },
     },
@@ -32,10 +32,10 @@ export default {
                 const user = resp.data.user
                 localStorage.setItem('token', token)
                 axios.defaults.headers.common['Authorization'] = token
-                commit('auth_success', token, user)
+                commit(AUTH_SUCCESS, token, user)
             }).catch(err => {
                 console.log(err);
-                commit('auth_error')
+                commit(AUTH_ERROR)
                 localStorage.removeItem('token')
                 state.loading = false
             }).finally(() => {
