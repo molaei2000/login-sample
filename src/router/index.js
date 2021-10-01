@@ -8,9 +8,9 @@ const routes = [
     path: '/',
     component: () => import( /* webpackChunkName: "auth" */ '../layouts/Auth.vue'),
     children: [{
-      path: 'login',
+      path: '',
       name: 'Login',
-      component: () => import( /* webpackChunkName: "login" */ '../views/Login.vue')
+      component: () => import( /* webpackChunkName: "login" */ '../views/Login/Login.vue')
     }]
   }
 
