@@ -38,23 +38,28 @@
 </template>
 <script>
 import {loginFields} from '../schema/schema'
-
+import {mapState} from 'vuex'
 export default {
     data() {
         return {
             formValid: false,
-            loading: false,
-            fields:loginFields
+            fields:loginFields,
         };
     },
+    computed:mapState(['loading'])
+    ,
     methods: {
         submitForm() {
             if (this.formValid) {
-                this.loading = true;
-                localStorage.setItem('user', JSON.stringify(this.form));
-                setTimeout(() => {
-                    this.loading = false;
-                }, 2000);
+                this.$store.state.loading = true;
+                console.log(this.$store.state.loading);
+                const form = {
+                    usrname:loginFields[0].value,
+                    password:loginFields[1].value
+                }
+                this.$store.dispatch('submitLogin',form)
+            }else{
+                alert('please fill the fields...')
             }
         }
     }
